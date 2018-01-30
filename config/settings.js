@@ -8,7 +8,7 @@ module.exports = {
 			protocol: 'mysql',
 			user: 'root',
 			password: 'root',
-			database: 'node_store',
+			database: 'shipping',
 			connectionLimit: 100
 			}
 		},
