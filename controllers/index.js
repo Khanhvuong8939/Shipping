@@ -2,7 +2,7 @@ var dateFormat = require('dateformat');
 module.exports.home = function(req, res){
 	//delete req.session;
 	if(typeof req.session.id!='undefined'){
-	req.models.todo.find({user_id:req.session.id}, function(err, rows) {
+	req.models.user.find({user_id:req.session.id}, function(err, rows) {
 		if(err){
 			console.log(err);
 		}

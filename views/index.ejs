@@ -1,65 +1,87 @@
 <%- include layout/header.ejs %>
 <script type="text/javascript">
- $(document).ready(function(){
- $('#email').keyup(function(){
- $(".error").remove();
-    var obj=$(this);
-	$.ajax({
-	   type:"POST",
-       url:"./ajax/checkEmail",	   
-	   data:"mode=check_email&email="+obj.val(),
-	   success:function(msg){
-	   //alert(msg);
-	   data=msg;
-	           if(data.status=='exist')
-		       {
-	            obj.after("<label class='error'>Email Id Aleady Exist</label>");
-			   $("#frmId .btn").attr('disabled','disabled');
-			   }
-			   else{
-			   $("#frmId .btn").removeAttr('disabled');
-			   }
-	       }
-	   });
-	});
-$('#frmId').submit(function(){
-if($(this).find('.error').length==0){
-return true;
-}
-else{
-return false;
-}
-});
- });
+    $(document).ready(function () {
+        $('#email').keyup(function () {
+            $(".error").remove();
+            var obj = $(this);
+            $.ajax({
+                type: "POST",
+                url: "./ajax/checkEmail",
+                data: "mode=check_email&email=" + obj.val(),
+                success: function (msg) {
+                    //alert(msg);
+                    data = msg;
+                    if (data.status == 'exist') {
+                        obj.after("<label class='error'>Email Id Aleady Exist</label>");
+                        $("#frmId .btn").attr('disabled', 'disabled');
+                    }
+                    else {
+                        $("#frmId .btn").removeAttr('disabled');
+                    }
+                }
+            });
+        });
+        $('#frmId').submit(function () {
+            if ($(this).find('.error').length == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+    });
 </script>
 <div class="mid">
-<div class="left small-div">
-<h1>Signup</h1>
-<form action="signup" method="post" enctype="multipart/form-data" id="frmId">
-<label>First Name</label>
-<input type="text" name="fname" required>
-<label>Last Name</label>
-<input type="text" name="lname" required>
-<label>User</label>
-<input type="text" name="username" required>
-<label>Email</label>
-<input type="text" name="email" id="email" required>
-<label>Password</label>
-<input type="password" name="password" required>
+    <div class="left small-div">
+        <h1>Signup</h1>
+        <form action="signup" method="post" enctype="multipart/form-data" id="frmId">
+            <label>First Name</label>
+            <input type="text" name="fname" required>
 
-<input type="submit" value="signup" class="btn">
-</form>
-</div>
-<div class="right small-div">
-<h1>Login</h1>
-<form action="login" method="post">
-<label>Email</label>
-<input type="text" name="email" required>
-<label>Password</label>
-<input type="password" name="password" required>
-<input type="submit" value="Login">
-</form>
-</div>
-<div style="clear:both;"></div>
+            <label>Last Name</label>
+            <input type="text" name="lname" required>
+
+            <label>User</label>
+            <input type="text" name="username" required>
+
+            <label>Email</label>
+            <input type="text" name="email" id="email" required>
+
+            <label>Date Of Birth</label>
+            <input type="text" name="dob" id="dob" required>
+
+            <label>Phone</label>
+            <input type="text" name="phone" id="phone" required>
+
+            <label>Country</label>
+            <input type="text" name="country" id="country" required>
+
+            <label>City</label>
+            <input type="text" name="city" id="city" required>
+
+            <label>Address</label>
+            <input type="text" name="addr" id="addr" required>
+
+            <label>Postcode</label>
+            <input type="text" name="postcde" id="postcde" required>
+
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="signup" class="btn">
+        </form>
+    </div>
+    <div class="right small-div">
+        <h1>Login</h1>
+        <form action="login" method="post">
+            <label>Email</label>
+            <input type="text" name="email" required>
+            <label>Password</label>
+            <input type="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <div style="clear:both;"></div>
 </div>
 <%- include layout/footer.ejs %>

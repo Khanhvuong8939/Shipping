@@ -5,21 +5,23 @@ module.exports.signup=function(req,res){
 	var dt_join=Math.round(+new Date()/1000);
 
 		passwd=md5(input.password);
-		var data = {
-			fname    : input.fname,
-			lname : input.lname,
-			email   : input.email,
+		var dataUser = {
 			username:input.username,
-			password   : passwd,
-			date_join: dt_join
+            email   : input.email,
+            dob:input.dob,
+            phone    : input.phone,
+            firstname    : input.fname,
+            lastname : input.lname,
+            dob:input.dob,
+            create_time:dt_join
 		};
-		req.models.user.create(data, function(err, rows) {
+		req.models.user.create(dataUser, function(err, rows) {
 					if(err){ 
 			console.log(err);
 		}
-		if(rows.id){
-			req.session.fname=rows.fname;
-			req.session.id=rows.id;
+		if(rows.user_id){
+			req.session.fname=rows.firstname;
+			req.session.id=rows.user_id;
 		}
 		res.redirect('/');
 			});
